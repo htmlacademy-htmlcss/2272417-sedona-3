@@ -345,11 +345,11 @@ img {
   width: 400px;
   min-height: 385px;
   padding: 25px 85px;
-  background-color: rgba(131, 179, 211, 0.12);
+  background-color: rgba(131, 179, 211, 0.2);
 }
 
 .advantages-item:nth-child(even) {
-  background-color: rgba(131, 179, 211, 0.2);
+  background-color: rgba(131, 179, 211, 0.12);
 }
 
 .advantages-item-big > .advantages-title {
@@ -539,6 +539,7 @@ img {
 
 .main-header-list {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   margin: 0;
   margin-bottom: 40px;
@@ -865,8 +866,9 @@ img {
   appearance: none;
   width: 292px;
   height: 50px;
-  padding: 14px 20px;
+  padding: 14px 48px 14px 20px;
   font: inherit;
+  color: inherit;
   border-radius: 4px;
   background-color: transparent;
   border: 2px solid #e5e5e5;
@@ -1190,13 +1192,14 @@ img {
 
 .modal-container {
   position: fixed;
-  top: 0;
-  left: 0;
+  inset: 0;
   z-index: 10;
   display: flex;
-  width: 100%;
-  height: 100%;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
   background-color: rgba(242, 242, 242, 0.8);
+  overflow-y: auto;
 }
 
 .modal-container-close {
@@ -1206,17 +1209,19 @@ img {
 .modal-search {
   position: relative;
   width: 717px;
-  margin: auto;
+  max-width: 100%;
+  max-height: calc(100vh - 40px);
   padding: 64px 70px;
   background-color: #ffffff;
   border-radius: 30px;
   box-shadow: 0 25px 50px 0 rgba(0, 0, 0, 0.15);
+  overflow-y: auto;
 }
 
 .modal-close-button {
   position: absolute;
   top: 64px;
-  right: 52px;
+  left: 613px;
   width: 52px;
   height: 52px;
   margin: 0;
@@ -1266,22 +1271,31 @@ img {
   grid-column: 1/-1;
   display: grid;
   grid-template-columns: 137px 1fr;
-  grid-template-rows: 48px minmax(21px, auto);
+  grid-template-rows: minmax(48px, auto) minmax(21px, auto);
   row-gap: 4px;
   margin: 0;
   margin-bottom: 23px;
   padding: 0;
 }
 
+.modal-wrapper-quantity {
+  display: grid;
+  grid-template-columns: auto 111px;
+  grid-template-rows: minmax(48px, auto);
+  margin: 0;
+  padding: 0;
+}
+
 .modal-label {
   align-self: center;
+  min-width: 0;
+  margin-right: 10px;
+  overflow-wrap: break-word;
+  hyphens: auto;
   font-weight: 700;
   font-size: 20px;
   line-height: 24px;
-}
-
-.modal-label-icon {
-  position: relative;
+  color: #000000;
 }
 
 .modal-input {
@@ -1289,6 +1303,7 @@ img {
   font-weight: 700;
   font-size: 18px;
   line-height: 20px;
+  color: #000000;
   background-color: #f2f2f2;
   border: none;
   border-radius: 4px;
@@ -1318,20 +1333,14 @@ img {
   color: #ff5757;
 }
 
-.modal-wrapper-quantity {
-  display: grid;
-  grid-template-columns: auto 111px;
-  grid-template-rows: 48px;
-  margin: 0;
-  padding: 0;
-}
-
 .modal-counter {
   display: grid;
   grid-template-columns: 40px 31px 40px;
 }
 
 .modal-quantity-input {
+  align-self: center;
+  height: 48px;
   padding: 10px 2px;
   text-align: center;
   border-radius: 0;
@@ -1352,7 +1361,6 @@ img {
   outline: 2px solid #000000;
   outline-offset: 2px;
   border-radius: 4px;
-
 }
 
 .modal-counter-button {
@@ -1436,11 +1444,15 @@ img {
   cursor: pointer;
 }
 
+.modal-label-icon {
+  display: flex;
+}
+
 .tooltip {
-  position: absolute;
+  position: relative;
+  flex-shrink: 0;
   width: 26px;
   height: 26px;
-  margin-left: 10px;
 }
 
 .tooltip-toggle {
@@ -1465,7 +1477,7 @@ img {
   display: none;
   width: 256px;
   margin-top: 15px;
-  padding: 15px 18px 22px 18px;
+  padding: 20px 18px 23px 23px;
   font-weight: 400;
   font-size: 16px;
   line-height: 20px;
@@ -1474,7 +1486,6 @@ img {
   box-shadow: 0 15px 30px 0 rgba(0, 0, 0, 0.3);
   border-radius: 10px;
   transform: translateX(-50%);
-
 }
 
 .tooltip-text::after {
@@ -1494,4 +1505,5 @@ img {
 .tooltip-toggle:hover ~ .tooltip-text::after,
 .tooltip-toggle:focus ~ .tooltip-text::after {
   display: block;
+  z-index: 2;
 }
